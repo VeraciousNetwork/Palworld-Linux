@@ -1,0 +1,19 @@
+[Unit]
+# DYNAMICALLY GENERATED FILE! Edit at your own risk
+# compile:noescape
+Description=Palworld Dedicated Server Watcher
+After=network.target
+
+[Service]
+Type=simple
+LimitNOFILE=10000
+User=$GAME_USER
+Group=$GAME_USER
+WorkingDirectory=$GAME_DIR/AppFiles
+Environment=XDG_RUNTIME_DIR=/run/user/$(id -u $GAME_USER)
+ExecStart=$GAME_DIR/manage.py --watch
+Restart=on-failure
+RestartSec=20s
+
+[Install]
+WantedBy=multi-user.target

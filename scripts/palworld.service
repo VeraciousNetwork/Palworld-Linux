@@ -1,0 +1,22 @@
+[Unit]
+# DYNAMICALLY GENERATED FILE! Edit at your own risk
+# compile:noescape
+Description=Palworld Dedicated Server
+After=network.target
+
+[Service]
+Type=simple
+LimitNOFILE=10000
+User=$GAME_USER
+Group=$GAME_USER
+WorkingDirectory=$GAME_DIR/AppFiles
+Environment=XDG_RUNTIME_DIR=/run/user/$(id -u $GAME_USER)
+Environment="STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_DIR"
+ExecStartPre=/usr/games/steamcmd +force_install_dir $GAME_DIR/AppFiles +login anonymous +app_update 2394010 validate +quit
+ExecStart=$GAME_DIR/AppFiles/PalServer.sh -publiclobby -useperfthreads -NoAsyncLoadingThread -UseMuilthreadForDS -NumberOfWorkerThreadsServer=$THREADS
+ExecStop=$GAME_DIR/manage.py --pre-stop
+Restart=on-failure
+RestartSec=20s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+[
+    {
+        "$schema": "https://raw.githubusercontent.com/amidaware/community-scripts/main/community_scripts.schema.json",
+        "guid": "2cbba1ad-c7ea-b719-a388-7cf1d72dd9d8",
+        "filename": "linux_install_game_palworld.sh",
+        "args": [],
+        "env": [],
+        "submittedBy": "Drew Wort <drew@worttechnologies.tech>",
+        "name": "Install Palworld",
+        "syntax": [],
+        "default_timeout": "600",
+        "shell": "shell",
+        "supported_platforms": [
+            "linux"
+        ],
+        "category": "Game Server"
+    }
+]
