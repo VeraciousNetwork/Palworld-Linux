@@ -17,7 +17,7 @@ This script will:
 * Create a `steam` user for running the game server
 * Install Palworld Dedicated Server using standard Steam procedures
 * Setup a systemd service for running the game server
-* Add firewall service for game server (with UFW)
+* Install UFW firewall and add rules for game server
 * Adds a management script for controlling your server
 * Adds a watching script for monitoring your server
 
@@ -109,6 +109,19 @@ prior to server shutdown.  Additionally, a manual save is issued prior to any sh
 event.
 
 Player join, leave, and level up events are also sent to Discord.
+
+Firewall rules are automatically updated for game server and RCON (when UFW is utilized).
+
+```
+# ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+...
+8211/udp                   ALLOW       Anywhere                   # Palworld Game Server
+8211/udp (v6)              ALLOW       Anywhere (v6)              # Palworld Game Server
+```
 
 
 ## Directory Structure
@@ -253,6 +266,9 @@ Since this integrates with systemd, all the standard OS commands are available.
 
 ### Start, Stop, Restart
 
+A helper service (`manage.py --watch`), is installed to accompany the game service.
+This helper facilitates the notifications to Discord during events.
+
 ```bash
 sudo systemctl start palworld
 ```
@@ -264,6 +280,9 @@ sudo systemctl restart palworld
 ```bash
 sudo systemctl stop palworld
 ```
+
+Stopping the server will automatically call `manage.py --pre-stop` 
+to notify players and attempt to save the server.
 
 ```bash
 sudo systemctl enable palworld
