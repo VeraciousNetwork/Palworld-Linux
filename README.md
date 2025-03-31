@@ -101,17 +101,14 @@ re-download the script installer via the steps above and re-run the installer ap
 Because it's managed with systemd, standardized commands are used for managing the server.
 This includes an auto-restart for the game server if it crashes.
 
-By default, enabled game maps will **automatically start at boot**!
+By default, game world will **automatically start at boot**!
 
-A start and stop script is included in `/home/steam/ArkSurvivalAscended`
-for starting and stopping all maps, (not to mention updating before they start).
+Bundled management script can send updates to Discord automatically
+when the server is stopped or restarted and will notify players in-game
+prior to server shutdown.  Additionally, a manual save is issued prior to any shutdown
+event.
 
-Sets up multiple maps on a single install, and **all of them can run at the same time**
-(providing your server has the horsepower to do so).
-
-If your single server cannot run all maps, this script supports multiple servers
-sharing the same `cluster` directory via NFS to allow players to jump between maps,
-even if they are on different physical servers.
+Player join, leave, and level up events are also sent to Discord.
 
 
 ## Directory Structure
