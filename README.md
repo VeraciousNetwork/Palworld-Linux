@@ -96,17 +96,6 @@ or delete your existing game data.  To install new features as they come out, si
 re-download the script installer via the steps above and re-run the installer application.
 
 
-## Finding Your Game
-
-Once installed and running, you should be able to search for your server
-in the "Unofficial" server list after ticking "Show Player Servers".
-
-![Show Player Servers button](images/show-player-servers.png)
-
-(This was an added step Wildcard implemented to make it harder for players to find servers
-that are hosted outside Nitrado's network...)
-
-
 ## Features
 
 Because it's managed with systemd, standardized commands are used for managing the server.
